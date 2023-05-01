@@ -10,11 +10,12 @@ import { useNavigation } from "@react-navigation/native"
 const Categories = ({ route }) => {
     const { params: { name } } = route
     const navigation = useNavigation()
+    const goBack = () => navigation.goBack()
     return (
         <View style={style.container}>
             <View style={{ paddingHorizontal: SIZE * 2, position: 'relative' }}>
                 <View style={{ position: 'relative', flexDirection: 'row', justifyContent: 'center', marginBottom: SIZE * 3}}>
-                    <TouchableOpacity style={{ position: 'absolute', left: 0, top: 6, height: '100%', alignItems: 'center'}}>
+                    <TouchableOpacity onPress={goBack} style={{ position: 'absolute', left: 0, top: 6, height: '100%', alignItems: 'center'}}>
                         <LeftArrowIcon />
                     </TouchableOpacity>
                     <Body1 style={style.title}>{name}</Body1>
@@ -45,7 +46,7 @@ export default Categories
 const style = StyleSheet.create({
     container: {
         flex: 1,
-        paddingTop: SIZE * 3,
+        paddingTop: SIZE * 7,
         backgroundColor: 'white',
     },
     title: {

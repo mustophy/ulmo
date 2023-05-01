@@ -1,15 +1,17 @@
 import { StyleSheet, TouchableOpacity, View } from "react-native"
 import { ImageGetter } from "../Utils"
 import { Body1, Body2, Body3 } from "./TextComponents"
-import { HeartIcon2 } from "./Svgs"
+import { HeartIcon, HeartIcon2 } from "./Svgs"
 import { COLORS, SIZE } from "../constants.json"
 import { useNavigation } from "@react-navigation/native"
+import { useState } from "react"
 
 const ProductCard = ({ product }) => {
     const navigation = useNavigation()
+    const [isLiked, setIsLiked] = useState(false)
     return (
         <View>
-            <TouchableOpacity onPress={() => navigation.navigate("Product")}>
+            <TouchableOpacity onPress={() => navigation.navigate("Product", { product })}>
                 <ImageGetter
                     imageName={product.imageName}
                     style={style.productImage}
@@ -17,7 +19,9 @@ const ProductCard = ({ product }) => {
             </TouchableOpacity>
             <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: SIZE }}>
                 <Body1 style={style.price}>${product.price}</Body1>
-                <HeartIcon2 />
+                <TouchableOpacity onPress={() => setIsLiked(!isLiked)}>
+                   <HeartIcon2 isActive={isLiked}/>
+                </TouchableOpacity>
             </View>
             <Body3 style={style.productDetails}>{product.description}</Body3>
 

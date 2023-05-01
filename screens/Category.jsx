@@ -13,7 +13,7 @@ const Category = ({ route }) => {
     const toSort = () => navigation.navigate('Sort')
 
     return (
-        <View style={{ flex: 1, backgroundColor: 'white' }}>
+        <View style={{ flex: 1, backgroundColor: 'white', paddingTop: SIZE * 7 }}>
             <View style={{ paddingHorizontal: SIZE * 2, position: 'relative' }}>
                 <View style={{ position: 'relative', flexDirection: 'row', justifyContent: 'center', marginBottom: SIZE * 3 }}>
                     <TouchableOpacity onPress={() => navigation.goBack()} style={{ position: 'absolute', left: 0, top: 6, height: '100%', alignItems: 'center' }}>
@@ -34,8 +34,8 @@ const Category = ({ route }) => {
                 </View>
                 <ScrollView showsVerticalScrollIndicator={false}>
                     <View style={style.productsContainer}>
-                        {Array(12).fill(products[0]).map(product => (
-                            <View key={product.name} style={style.product}>
+                        {products.map((product, index) => (
+                            <View key={index} style={style.product}>
                                 <ProductCard product={product} />
                             </View>
                         ))}
@@ -93,5 +93,61 @@ const products = [
         imageName: 'bedside_table',
         description: 'wooden bedside table featuring',
         price: '159.00'
-    }
+    },
+    {
+        imageName: 'wooden_chair',
+        description: 'wooden bedside table featuring',
+        price: '180.00'
+    },
+    {
+        imageName: 'bedroom',
+        description: 'wooden bedside table featuring',
+        price: '45.00'
+    },
+    {
+        imageName: 'bedside_table',
+        description: 'wooden bedside table featuring',
+        price: '159.00'
+    },
+    {
+        imageName: 'bedside_table',
+        description: 'wooden bedside table featuring',
+        price: '159.00'
+    },
+    {
+        imageName: 'wooden_chair',
+        description: 'wooden bedside table featuring',
+        price: '180.00'
+    },
+    {
+        imageName: 'bedroom',
+        description: 'wooden bedside table featuring',
+        price: '45.00'
+    },
+    {
+        imageName: 'bedside_table',
+        description: 'wooden bedside table featuring',
+        price: '159.00'
+    },
+    {
+        imageName: 'bedside_table',
+        description: 'wooden bedside table featuring',
+        price: '159.00'
+    },
+    {
+        imageName: 'wooden_chair',
+        description: 'wooden bedside table featuring',
+        price: '180.00'
+    },
+    {
+        imageName: 'bedroom',
+        description: 'wooden bedside table featuring',
+        price: '45.00'
+    },
+    {
+        imageName: 'bedside_table',
+        description: 'wooden bedside table featuring',
+        price: '159.00'
+    },
+
 ]

@@ -1,17 +1,18 @@
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
-import { SIZE, COLORS } from '../constants.json'
-import { Body1, Heading2, Body2, Body3 } from './TextComponents'
-import PrimaryButton from './PrimaryButton'
+import { SIZE, COLORS } from '../../constants.json'
+import { Body1, Heading2, Body2, Body3 } from '../../components/TextComponents'
+import PrimaryButton from '../../components/PrimaryButton'
 import { useState } from 'react'
-import { ImageGetter } from '../Utils'
-import { CheckboxCircle } from './Elements'
-import { LeftArrowIcon } from './Svgs'
+import { ImageGetter } from '../../Utils'
+import { CheckboxCircle } from '../../components/Elements'
+import { LeftArrowIcon } from '../../components/Svgs'
 import { useNavigation } from '@react-navigation/native'
 
-const Checkout = () => {
+const PaymentMethod = () => {
     const navigation = useNavigation()
     const [selectedMethod, setSelectedMethod] = useState('')
     const goBack = () => navigation.goBack()
+    const toOrderSuccess = () => navigation.navigate('Order Success')
     return (
         <View style={style.container}>
             <View style={{ position: 'relative', alignItems: 'center', }}>
@@ -25,18 +26,19 @@ const Checkout = () => {
             <View style={style.methodsContainer}>
                 {paymentOptions.map(method => (
                     <RenderMethod
+                        key={method.name}
                         method={method}
                         selected={selectedMethod}
                         setSelected={setSelectedMethod}
                     />
                 ))}
             </View>
-            <PrimaryButton style={style.button} text="Pay $420.00" onPress={{}} />
+            <PrimaryButton onPress={toOrderSuccess} style={style.button} text="Pay $420.00" />
         </View>
     )
 }
 
-export default Checkout
+export default PaymentMethod
 
 const style = StyleSheet.create({
     header: {

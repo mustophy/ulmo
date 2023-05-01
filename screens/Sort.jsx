@@ -9,6 +9,7 @@ import { useNavigation } from '@react-navigation/native'
 
 const Sort = () => {
     const navigation = useNavigation()
+    const [ sortMethod, setSortMethod ] = useState('')
     const goBack = () => navigation.goBack()
     return (
         <View style={{ flex: 1, position: 'relative',}}>
@@ -18,7 +19,7 @@ const Sort = () => {
             <View style={sortStyle.container}>
                 <Heading1>sort by</Heading1>
                 <View style={sortStyle.sortList}>
-                    {sortOptions.map(sort => sortElement({ sort }))}
+                    {sortOptions.map(sort => <SortElement key={sort} isChecked={sort === sortMethod } setChecked={setSortMethod} sort={sort} />)}
                 </View>
                 <PrimaryButton text="Cancel" onPress={goBack} style={sortStyle.button}/>
             </View>
@@ -52,11 +53,9 @@ const sortStyle = StyleSheet.create({
     }
 })
 
-const sortElement = ({ sort }) => {
-    const [isChecked, setChecked] = useState(false)
-    const toggleCheck = () => setChecked(!isChecked)
+const SortElement = ({ sort, isChecked, setChecked }) => {
     return (
-        <FlexBetween isTouchable={true} onPress={toggleCheck}>
+        <FlexBetween isTouchable={true} onPress={() => setChecked(sort)}>
             <Body1 style={{ fontWeight: 400 }}>{sort}</Body1>
             <CheckboxCircle isChecked={isChecked} setChecked={setChecked} />
         </FlexBetween>
@@ -68,6 +67,6 @@ export default Sort
 const sortOptions = [
     "Price: high to low",
     "Price: low to high",
-    "Price: New first",
-    "Price: Popular first",
+    "New first",
+    "Popular first",
 ]

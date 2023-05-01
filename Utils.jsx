@@ -31,6 +31,8 @@ const imagePath = (name) => {
     else if (name === "boxes") return require('./assets/images/boxes.png')
     else if (name === "bedside_table") return require('./assets/images/bedside_table.png')
     else if (name === "bedside_table2") return require('./assets/images/bedside_table2.png')
+    else if (name === "wooden_chair") return require('./assets/images/wooden_chair.png')
+    else if (name === "bedroom") return require('./assets/images/bedroom.png')
     else if (name === "user1") return require('./assets/images/user1.png')
     else if (name === "order_success") return require('./assets/illustrations/wink.png')
     else if (name === "mastercard") return require('./assets/images/mastercard.png')

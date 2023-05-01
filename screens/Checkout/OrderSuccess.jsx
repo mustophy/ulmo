@@ -1,8 +1,8 @@
 import { View, Text, StyleSheet } from 'react-native'
-import { COLORS, SIZE } from '../constants.json'
-import { ImageGetter } from '../Utils'
-import { Body1, Heading2 } from '../components/TextComponents'
-import PrimaryButton from '../components/PrimaryButton'
+import { COLORS, SIZE } from '../../constants.json'
+import { ImageGetter } from '../../Utils'
+import { Body1, Heading2 } from '../../components/TextComponents'
+import PrimaryButton from '../../components/PrimaryButton'
 
 const OrderSuccess = () => {
   return (

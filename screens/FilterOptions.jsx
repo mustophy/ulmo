@@ -21,7 +21,7 @@ const FilterOptions = ({ route }) => {
             </FlexBetween>
             <ScrollView style={{ marginBottom: SIZE}} showsVerticalScrollIndicator={false}>
                 <View style={style.categorySection}>
-                    {categories.map(category => renderCategory({ category }))}
+                    {categories.map(category => <RenderCategory key={category.name} category={category}/>)}
                 </View>
             </ScrollView>
             <PrimaryButton text="Show 25 items" style={style.button} />
@@ -99,7 +99,7 @@ const categories = [
     },
 ]
 
-const renderCategory = ({ category }) => {
+const RenderCategory = ({ category }) => {
     const [isChecked, setIsChecked] = useState(false)
     return (
         <FlexBetween isTouchable={true} onPress={() => setIsChecked(!isChecked)}>

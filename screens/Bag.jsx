@@ -1,42 +1,48 @@
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
-import { SIZE, COLORS } from '../../constants.json'
-import { Body1, Body2, Body3, Heading1, Heading2 } from '../../components/TextComponents'
-import { FlexBetween } from '../../components/FlexComponents'
-import PrimaryButton from '../../components/PrimaryButton'
-import { ImageGetter } from '../../Utils'
-import { CloseCircularIcon, MinusIcon, PlusIcon } from '../../components/Svgs'
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native'
+import { SIZE, COLORS } from '../constants.json'
+import { Body1, Body2, Body3, Heading1, Heading2 } from '../components/TextComponents'
+import { FlexBetween } from '../components/FlexComponents'
+import PrimaryButton from '../components/PrimaryButton'
+import { ImageGetter } from '../Utils'
+import { CloseCircularIcon, MinusIcon, PlusIcon } from '../components/Svgs'
 import { useState } from 'react'
+import { useNavigation } from '@react-navigation/native'
 
-const Index = () => {
+const Bag = () => {
+    const navigation = useNavigation()
+    const toCheckout = () => navigation.navigate('Checkout')
+
     return (
         <View style={style.container}>
-            <View style={{ paddingHorizontal: SIZE * 2}}>
-                <Heading1>bag</Heading1>
-                <View style={style.itemList}>
-                    {products.map(product => (
-                        <BagItem item={product} />
-                    ))}
+            <ScrollView>
+                <View style={{ paddingHorizontal: SIZE * 2 }}>
+                    <Heading1>bag</Heading1>
+                    <View style={style.itemList}>
+                        {products.map(product => (
+                            <BagItem key={product.imageName} item={product} />
+                        ))}
+                    </View>
+                    <Heading2>promocode</Heading2>
+                    <FlexBetween style={style.promoBox}>
+                        <Body1>ULMO</Body1>
+                        <CloseCircularIcon />
+                    </FlexBetween>
+                    <FlexBetween>
+                        <Heading2>total</Heading2>
+                        <Heading2>$420.00</Heading2>
+                    </FlexBetween>
+                    <FlexBetween>
+                        <Body1 style={style.promo}>Promocode</Body1>
+                        <Body1 style={style.promo}>-$25.00</Body1>
+                    </FlexBetween>
+                    <PrimaryButton onPress={toCheckout} style={style.button} text="Checkout" />
                 </View>
-                <Heading2>promocode</Heading2>
-                <FlexBetween style={style.promoBox}>
-                    <Body1>ULMO</Body1>
-                    <CloseCircularIcon />
-                </FlexBetween>
-                <FlexBetween>
-                    <Heading2>total</Heading2>
-                    <Heading2>$420.00</Heading2>
-                </FlexBetween>
-                <FlexBetween>
-                    <Body1 style={style.promo}>Promocode</Body1>
-                    <Body1 style={style.promo}>-$25.00</Body1>
-                </FlexBetween>
-                <PrimaryButton style={style.button} text="Checkout" />
-            </View>
+            </ScrollView>
         </View>
     )
 }
 
-export default Index
+export default Bag
 
 const style = StyleSheet.create({
     container: {
@@ -75,7 +81,7 @@ const BagItem = ({ item }) => {
                 imageName={item.imageName}
                 style={bagItemStyle.image}
             />
-            <View style={{ flex: 1}}>
+            <View style={{ flex: 1 }}>
                 <Body1>${item.price}</Body1>
                 <Body3 style={bagItemStyle.desc}>{item.description}</Body3>
                 <FlexBetween style={bagItemStyle.controls}>
@@ -128,6 +134,6 @@ const products = [
     {
         price: '285.00',
         description: 'Square bedside table with legs, a rattan shelf and a...',
-        imageName: 'kitchen'
+        imageName: 'bedroom'
     },
 ]

@@ -2,9 +2,9 @@ import { TouchableOpacity, StyleSheet } from 'react-native'
 import { COLORS, SIZE } from "../constants.json"
 import { Body1 } from './TextComponents'
 
-const PrimaryButton = ({ text, icon = false, style = {}, textStyle = {}, onPress = () => {}}) => {
+const PrimaryButton = ({ text, icon = false, style = {}, textStyle = {}, onPress = () => {}, isDisabled = false}) => {
   return (
-    <TouchableOpacity onPress={onPress} style={[buttonStyle.container, style]}>
+    <TouchableOpacity disabled={isDisabled} onPress={onPress} style={[buttonStyle.container, style]}>
       <Body1 style={[{ fontWeight: 500}, textStyle]}>{text}</Body1>
       {icon && <>{icon}</>}
     </TouchableOpacity>

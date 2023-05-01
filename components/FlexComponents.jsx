@@ -27,6 +27,19 @@ export const FlexCenter = ({ children, style, isTouchable = false, onPress = () 
     </View>
 }
 
+export const Flex = ({ children, style, isTouchable = false, onPress = () => {} }) => {
+    if (isTouchable) {
+        return (
+            <TouchableOpacity onPress={onPress} style={[ { flexDirection: 'row'}, style]}>
+                {children}
+            </TouchableOpacity>
+        )
+    }
+    return <View style={[ { flexDirection: 'row',}, style]}>
+        {children}
+    </View>
+}
+
 const flexStyle = StyleSheet.create({
     between: {
         flexDirection: 'row',

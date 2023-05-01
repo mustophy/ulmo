@@ -2,20 +2,36 @@ import { View, Text, ScrollView, StyleSheet, TouchableOpacity } from 'react-nati
 import { ImageGetter } from '../Utils'
 import { SIZE, COLORS } from "../constants.json"
 import PrimaryButton from '../components/PrimaryButton'
-import { BagIcon2, CartIcon, RightChevron } from '../components/Svgs'
+import { BagIcon2, CartIcon, HeartIcon, HeartIcon2, LeftArrowIcon, RightChevron } from '../components/Svgs'
 import { Body1, Body2, Heading1, Heading2 } from '../components/TextComponents'
 import ProductCard from '../components/ProductCard'
 import { useNavigation } from '@react-navigation/native'
+import { FlexBetween } from '../components/FlexComponents'
+import { useState } from 'react'
 
-const Product = () => {
+const Product = ({ route }) => {
+    const navigation = useNavigation()
+    const [isLiked, setIsLiked] = useState(false)
+    const { product } = route.params
+    const goBack = () => navigation.goBack()
     return (
         <View style={{ flex: 1, backgroundColor: 'white' }}>
-            <ImageGetter
-                imageName="bedside_table2"
-                style={{ height: '55%', width: '100%' }}
-            />
+            <View style={{ height: '55%', position: 'relative', }}>
+                <FlexBetween style={{ position: 'absolute', zIndex: 3, top: SIZE * 8, width: '100%', paddingHorizontal: SIZE * 2}}>
+                    <TouchableOpacity onPress={goBack} style={style.iconContainer}>
+                        <LeftArrowIcon />
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => setIsLiked(!isLiked)} style={style.iconContainer}>
+                        <HeartIcon2 isActive={isLiked}/>
+                    </TouchableOpacity>
+                </FlexBetween>
+                <ImageGetter
+                    imageName={product.imageName}
+                    style={{ height: '100%', width: '100%' }}
+                />
+            </View>
             <ScrollView showsVerticalScrollIndicator={false}>
-                <View style={{ paddingHorizontal: SIZE * 2, paddingBottom: SIZE * 6}}>
+                <View style={{ paddingHorizontal: SIZE * 2, paddingBottom: SIZE * 6 }}>
                     {productDetails()}
                     {mightLike()}
                 </View>
@@ -33,7 +49,14 @@ const product = {
 }
 
 const style = StyleSheet.create({
-
+    iconContainer: {
+        backgroundColor: 'white',
+        height: SIZE * 4.5,
+        width: SIZE * 4.5,
+        borderRadius: SIZE * 2.25,
+        alignItems: 'center',
+        justifyContent: 'center'
+    }
 })
 
 const mightLike = () => {
@@ -54,6 +77,7 @@ const mightLike = () => {
 
 const productDetails = () => {
     const navigation = useNavigation()
+    const toInformation = () => navigation.navigate('ProductInformation')
     return (
         <>
             <View style={{ paddingVertical: SIZE * 3 }}>
@@ -72,10 +96,10 @@ const productDetails = () => {
                         <Body2>Copy</Body2>
                     </TouchableOpacity>
                 </View>
-                <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+                <TouchableOpacity onPress={toInformation} style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
                     <Body1>Product Information</Body1>
                     <RightChevron />
-                </View>
+                </TouchableOpacity>
                 <TouchableOpacity onPress={() => navigation.navigate('Reviews')} style={{ flexDirection: 'row', marginVertical: SIZE * 5, justifyContent: 'space-between', alignItems: 'center' }}>
                     <Body1>Reviews</Body1>
                     <Body1>32</Body1>

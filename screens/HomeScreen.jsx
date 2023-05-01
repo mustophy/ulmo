@@ -16,18 +16,18 @@ const Home = () => {
         <Heading1 style={homeStyle.headerStyle}> ulmo </Heading1>
         <SearchInput style={homeStyle.searchInputStyle} />
       </View>
-      <ScrollView showsHorizontalScrollIndicator={false} horizontal style={{ marginBottom: SIZE * 3, marginLeft: SIZE * 2 }}>
+      <ScrollView showsHorizontalScrollIndicator={false} horizontal style={{ marginLeft: SIZE * 2 }}>
         <View style={homeStyle.featuredContainer}>
           {featured.map(feature => (
-            <FeaturedCard featured={feature} />
+            <FeaturedCard key={feature.name} featured={feature} />
           ))}
         </View>
       </ScrollView>
-      <ScrollView style={{ width: '100%', paddingHorizontal: SIZE * 2 }}>
-        <View style={{ gap: 2 * SIZE, paddingBottom: SIZE * 2 }}>
+      <ScrollView style={{ width: '100%', paddingHorizontal: SIZE * 2, marginTop: SIZE * 2 }}>
+        <View style={{ gap: 2 * SIZE, paddingBottom: SIZE * 2,  }}>
           {locations.map(location => {
             return (
-              <TouchableOpacity onPress={() => navigation.navigate("Categories", { name: location.name})}>
+              <TouchableOpacity key={location.name} onPress={() => navigation.navigate("Categories", { name: location.name})}>
                 <LocationCard location={location} key={location.id} />
               </TouchableOpacity>
             )

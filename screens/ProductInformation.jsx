@@ -22,7 +22,7 @@ const ProductInformation = () => {
                 <Heading2 style={style.subHeader}>measurements</Heading2>
                 <View style={style.featureContainer}>
                     {measurements.map(measurement => (
-                        <FlexBetween>
+                        <FlexBetween key={measurement.name}>
                             <Body1 style={style.featureName}>{measurement.name}</Body1>
                             <Body1 style={style.featureValue}>{measurement.value}</Body1>
                         </FlexBetween>
@@ -31,7 +31,7 @@ const ProductInformation = () => {
                 <Heading2 style={style.subHeader}>composition</Heading2>
                 <View style={style.featureContainer}>
                     {composition.map(comp => (
-                        <FlexBetween>
+                        <FlexBetween key={comp.name}>
                             <Body1 style={style.featureName}>{comp.name}</Body1>
                             <Body1 style={style.featureValue}>{comp.value}</Body1>
                         </FlexBetween>

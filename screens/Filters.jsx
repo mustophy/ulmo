@@ -25,7 +25,7 @@ const Filters = () => {
 
             <View style={style.filterContainer}>
                 {options.map(option => (
-                    <TouchableOpacity onPress={() => navigation.navigate("FilterOptions", { name: option.name})} style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+                    <TouchableOpacity key={option.name} onPress={() => navigation.navigate("FilterOptions", { name: option.name})} style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
                         <Body1 style={{ fontWeight: 400 }}>{option.name}</Body1>
                         <Body1 style={{ fontWeight: 400, color: COLORS.gray[500] }}>{option.value}</Body1>
                     </TouchableOpacity>

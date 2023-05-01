@@ -6,14 +6,16 @@ import { Body1, Body2 } from '../components/TextComponents'
 import { useState } from 'react'
 import { CameraIcon } from '../components/Svgs'
 import { useNavigation } from '@react-navigation/native'
+import { ImageGetter } from '../Utils'
 
 const NewReview = () => {
     const navigation = useNavigation()
+    const goBack = () => navigation.goBack()
     const [rating, setRating] = useState(-1)
     return (
         <View style={{ flex: 1, backgroundColor: 'white', paddingTop: SIZE * 10, paddingHorizontal: SIZE * 2 }}>
             <View style={{ position: 'relative', flexDirection: 'row' }}>
-                <TouchableOpacity style={{ position: 'absolute', top: SIZE / 2, }} onPress={() => navigation.goBack()}>
+                <TouchableOpacity style={{ position: 'absolute', top: SIZE / 2, }} onPress={goBack}>
                     <CloseIcon />
                 </TouchableOpacity>
                 <Body1 style={{ textAlign: 'center', width: '100%' }}>New Review</Body1>
@@ -31,12 +33,9 @@ const NewReview = () => {
                 <TouchableOpacity style={{ width: SIZE * 8, height: SIZE * 8, borderRadius: SIZE, backgroundColor: COLORS.gray[100], justifyContent: 'center', alignItems: 'center'}}>
                     <CameraIcon />
                 </TouchableOpacity>
-                <View style={{ width: SIZE * 8, height: SIZE * 8, backgroundColor: 'purple', borderRadius: SIZE }}>
+                <ImageGetter imageName="kitchen" style={{ width: SIZE * 8, height: SIZE * 8, backgroundColor: 'purple', borderRadius: SIZE }} />
+                <ImageGetter imageName="dining" style={{ width: SIZE * 8, height: SIZE * 8, backgroundColor: 'purple', borderRadius: SIZE }} />
 
-                </View>
-                <View style={{ width: SIZE * 8, height: SIZE * 8, backgroundColor: 'purple', borderRadius: SIZE }}>
-
-                </View>
             </View>
             <TouchableOpacity style={style.button}>
                 <Body1>Send Review</Body1>
