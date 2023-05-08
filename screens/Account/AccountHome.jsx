@@ -2,14 +2,17 @@ import { View, TouchableOpacity, StyleSheet } from 'react-native'
 import { SettingsIcon, BagIcon2, PaymentMethodIcon, SignOutIcon, LocationIcon, UserIcon2 } from '../../components/Svgs'
 import { Body1, Heading1 } from '../../components/TextComponents'
 import { ImageGetter } from '../../Utils'
+import userAtom from '../../atoms/userAtom'
 import { SIZE, COLORS } from '../../constants.json'
 import { Layout } from '../../components/Elements'
 import { Flex } from '../../components/FlexComponents'
 import { useNavigation } from '@react-navigation/native'
+import { useRecoilState } from 'recoil'
 
 
 const AccountHome = () => {
     const navigation = useNavigation()
+    const [user, setUser] = useRecoilState(userAtom)
     const navigateTo = (route) => navigation.navigate(route)
     return (
         <Layout>
@@ -23,8 +26,8 @@ const AccountHome = () => {
                     imageName="user1"
                 />
                 <View style={style.userDetails}>
-                    <Body1>Tanya Morenko</Body1>
-                    <Body1 style={style.userNumber}>+234 7812348888</Body1>
+                    <Body1>{user.name}</Body1>
+                    <Body1 style={style.userNumber}>{user.phone}</Body1>
                 </View>
             </Flex>
             <View style={style.contentContainer}>

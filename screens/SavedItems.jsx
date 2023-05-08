@@ -5,12 +5,29 @@ import SearchInput from '../components/SearchInput'
 import { CloseCircularIcon, FilterIcon, SortIcon } from '../components/Svgs'
 import { Flex } from '../components/FlexComponents'
 import { SIZE, COLORS } from '../constants.json'
+import { removeFromFavorites } from '../atoms/favoritesAtom'
 import { ImageGetter } from '../Utils'
 import Navbar from '../components/Navbar'
+import { useRecoilState } from 'recoil'
+import favoritesAtom from '../atoms/favoritesAtom'
 
 const SavedItems = () => {
     const toSort = () => { }
     const toFilters = () => { }
+    const [favorites, setFavorites] = useRecoilState(favoritesAtom)
+    const removeHandler = (product) => removeFromFavorites(favorites, product, setFavorites)
+    const cartList = []
+    favorites.forEach((favorite, index) => {
+        cartList.push(
+            <ItemRow
+                product={favorite}
+                key={`${favorite}${index}`}
+                favorites={favorites}
+                setFavorites={setFavorites}
+                removeHandler={removeHandler}
+            />
+        )
+    })
     return (
         <Layout>
             <Heading1 style={style.header}>saved items</Heading1>
@@ -25,7 +42,9 @@ const SavedItems = () => {
                     <FilterIcon />
                 </TouchableOpacity>
             </View>
-            <ItemRow />
+            <View style={style.listContainer}>
+                {cartList}
+            </View>
             <Navbar />
         </Layout>
     )
@@ -39,6 +58,9 @@ const style = StyleSheet.create({
         marginTop: SIZE * 5,
         position: 'relative',
         alignItems: 'center',
+    },
+    listContainer: {
+        gap: SIZE * 4
     },
     filtersContainer: {
         flexDirection: 'row',
@@ -59,12 +81,12 @@ const style = StyleSheet.create({
     },
 })
 
-const ItemRow = ({ product = products[0] }) => {
+const ItemRow = ({ product = products[0], removeHandler }) => {
     return (
         <Flex style={itemRowStyle.container}>
             <ImageGetter
                 style={itemRowStyle.image}
-                imageName={product.imageName}
+                imageName={product.images[0]}
             />
             <View style={itemRowStyle.details}>
                 <Body1>${product.price}</Body1>
@@ -73,7 +95,7 @@ const ItemRow = ({ product = products[0] }) => {
                     <Body2>Move to bag</Body2>
                 </TouchableOpacity>
             </View>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => removeHandler(product)}>
                 <CloseCircularIcon />
             </TouchableOpacity>
         </Flex>

@@ -22,8 +22,8 @@ const checkStyle = StyleSheet.create({
 
 })
 
-export const InputText = ({ label = '' }) => {
-    const [text, setText] = useState('')
+export const InputText = ({ label = '', value = "" }) => {
+    const [text, setText] = useState(value)
     return (
         <View style={textInputStyle.container}>
             <Body2 style={textInputStyle.label}>{label}</Body2>

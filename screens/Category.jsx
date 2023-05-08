@@ -90,62 +90,62 @@ const style = StyleSheet.create({
 
 const products = [
     {
-        imageName: 'bedside_table',
+        images: ['bedside_table'],
         description: 'wooden bedside table featuring',
         price: '159.00'
     },
     {
-        imageName: 'wooden_chair',
+        images: ['wooden_chair'],
         description: 'wooden bedside table featuring',
         price: '180.00'
     },
     {
-        imageName: 'bedroom',
+        images: ['bedroom'],
         description: 'wooden bedside table featuring',
         price: '45.00'
     },
     {
-        imageName: 'bedside_table',
+        images: ['bedside_table'],
         description: 'wooden bedside table featuring',
         price: '159.00'
     },
     {
-        imageName: 'bedside_table',
+        images: ['bedside_table'],
         description: 'wooden bedside table featuring',
         price: '159.00'
     },
     {
-        imageName: 'wooden_chair',
+        images: ['wooden_chair'],
         description: 'wooden bedside table featuring',
         price: '180.00'
     },
     {
-        imageName: 'bedroom',
+        images: ['bedroom'],
         description: 'wooden bedside table featuring',
         price: '45.00'
     },
     {
-        imageName: 'bedside_table',
+        images: ['bedside_table'],
         description: 'wooden bedside table featuring',
         price: '159.00'
     },
     {
-        imageName: 'bedside_table',
+        images: ['bedside_table'],
         description: 'wooden bedside table featuring',
         price: '159.00'
     },
     {
-        imageName: 'wooden_chair',
+        images: ['wooden_chair'],
         description: 'wooden bedside table featuring',
         price: '180.00'
     },
     {
-        imageName: 'bedroom',
+        images: ['bedroom'],
         description: 'wooden bedside table featuring',
         price: '45.00'
     },
     {
-        imageName: 'bedside_table',
+        images: ['bedside_table'],
         description: 'wooden bedside table featuring',
         price: '159.00'
     },

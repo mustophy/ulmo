@@ -7,9 +7,12 @@ import { Body1, Body2 } from '../../components/TextComponents'
 import { ImageGetter } from '../../Utils'
 import { SIZE, COLORS } from '../../constants.json'
 import { useNavigation } from '@react-navigation/native'
+import { useRecoilState } from 'recoil'
+import userAtom from '../../atoms/userAtom'
 
 const MyDetails = () => {
     const navigation = useNavigation()
+    const [user, setUser] = useRecoilState(userAtom)
     const goBack = () => navigation.goBack()
     return (
         <Layout>
@@ -29,10 +32,10 @@ const MyDetails = () => {
             </View>
             <Body2 style={style.text}>Change photo</Body2>
             <View style={style.inputsContainer}>
-                <InputText label='Full name' />
-                <InputText label='Phone' />
-                <InputText label='Email' />
-                <InputText label='Date of birth' />
+                <InputText label='Full name' value={user.name}/>
+                <InputText label='Phone' value={user.phone}/>
+                <InputText label='Email' value={user.email}/>
+                <InputText label='Date of birth' value={user.dob}/>
             </View>
         </Layout>
     )
